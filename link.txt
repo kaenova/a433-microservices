@@ -1,0 +1,3 @@
+Github Repository: https://github.com/kaenova/a433-microservices/tree/proyek-pertama
+Dockerhub Image Repository:  https://hub.docker.com/repository/docker/kaenova/item-app/general
+Github Package Image: ghcr.io/kaenova/item-app:v1

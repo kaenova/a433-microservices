@@ -1,0 +1,29 @@
+# Menggunakan Docker Compose versi 2 atau lebih.
+version: "3"
+# Memiliki dua buah service: item-app dan item-db
+services:
+  item-app:
+    # Menggunakan image item-app dari Docker Hub (atau GitHub Packages bila menerapkan saran keempat).
+    image: ghcr.io/kaenova/item-app:v1
+    # (My note) Make sure the service expose 8080
+    expose:
+      - "8080"
+    # Melakukan port mapping agar dapat diakses dari port 80 di host.
+    ports:
+      - "80:8080"
+    # Pastikan item-app hanya berjalan setelah item-db diluncurkan
+    depends_on:
+      - item-db
+    # Menerapkan restart policy pada berkas docker-compose.yml agar container selalu restart ketika terhenti.
+    # Dibutuhkan juga karena saat item-db berjalan, belum tentu item-db juga siap
+    restart: "always"
+  item-db:
+    # Menggunakan image mongo:3 dari Docker Hub.
+    image: mongo:3
+    # Memakai volume bernama app-db dengan target /data/db di container.
+    volumes:
+      - "app-db:/data/db"
+
+volumes:
+  # Memiliki satu buah volume bernama app-db.
+  app-db:
