@@ -1,0 +1,41 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  # Deployment name
+  name: karsajobs-deployment
+spec:
+  # Create 1 pods
+  replicas: 1
+  # Preparing pod selector based on pod labels
+  selector:
+    matchLabels:
+      app: karsajobs
+      type: backend
+  # Pod template
+  template:
+    metadata:
+      labels:
+        app: karsajobs
+        type: backend
+    spec:
+      containers:
+      # Deploy karsajobs container (backend)
+      - name: karsajobs-backend
+        image: ghcr.io/kaenova/karsajobs:latest
+        ports:
+        - containerPort: 8080
+        env:
+          - name: APP_PORT
+            value: "8080"
+          - name: MONGO_HOST
+            value: mongo-service
+          - name: MONGO_USER
+            valueFrom:
+              secretKeyRef:
+                name: mongo-secret
+                key: MONGO_ROOT_USERNAME
+          - name: MONGO_PASS
+            valueFrom:
+              secretKeyRef:
+                name: mongo-secret
+                key: MONGO_ROOT_PASSWORD
