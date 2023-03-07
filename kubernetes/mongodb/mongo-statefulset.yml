@@ -32,14 +32,19 @@ spec:
         ports:
           - containerPort: 27017
             name: default-port
+        # Mounting
         volumeMounts:
+          # Mount from config
           - name: config
             mountPath: /config
+          # Mount from mongo-credentials
           - name: mongo-credentials
             mountPath: /etc/mongo-credentials
+          # Mount from data
           - name: data
             mountPath: /data/db
         env:
+          # Environment, ini karena di mount dari mongo-credentials
           - name: MONGO_INITDB_ROOT_USERNAME_FILE
             value: /etc/mongo-credentials/MONGO_ROOT_USERNAME
           - name: MONGO_INITDB_ROOT_PASSWORD_FILE

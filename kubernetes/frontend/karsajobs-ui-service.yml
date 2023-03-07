@@ -7,5 +7,6 @@ spec:
       app: karsajobs
       type: ui
   ports:
+  # Bind ke port yang sama
   - port: 8000
     targetPort: 8000

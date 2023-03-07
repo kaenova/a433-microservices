@@ -1,8 +1,11 @@
+# Membuat configmap
 apiVersion: v1
 kind: ConfigMap
 metadata:
   name: mongo-config
 data:
+  # Diminta dari submission
+  # Membuat "file" dengan nama mongo.conf
   mongo.conf: |
     storage:
       dbPath: /data/db

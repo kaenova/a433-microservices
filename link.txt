@@ -1,0 +1,15 @@
+Image Registry:
+karsajobs: https://github.com/users/kaenova/packages/container/package/karsajobs
+karsajobs-ui: https://github.com/users/kaenova/packages/container/package/karsajobs-ui
+
+Repository Branch
+karsajobs: https://github.com/kaenova/a433-microservices/tree/karsajobs
+karsajobs-ui: https://github.com/kaenova/a433-microservices/tree/karsajobs-ui
+kubernetes (for this submission): https://github.com/kaenova/a433-microservices/tree/kubernetes
+
+Notes:
+Dalam mendeploy backend dan frontend saya menambahkan ingress agar bisa langsung diakses dan bisa melakukan routing lebih mudah.
+Untuk seluruh frontned dapat diakses melalui http://localhost/, untuk api akan dilakukan routing melalui http://localhost/api/
+
+Selain itu, untuk monitoring grafana saya membuka tanpa Nodeport, melainkan LoadBalancer di port 3000. Saya mendeploy ini menggunakan 
+helm charts dari: https://github.com/prometheus-community/helm-charts/tree/main/charts/kube-prometheus-stack dan merubah service grafananya ke LoadBalancer.

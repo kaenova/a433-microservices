@@ -1,24 +1,31 @@
+# Persistent Volume
 apiVersion: v1
 kind: PersistentVolume
 metadata:
   name: mongo-pv
 spec:
+  # Menyediakan 1GB
   capacity:
     storage: 1000Mi
   accessModes:
     - ReadWriteOnce
+  # Harus menggunakan hostpath karena saya pakai Docker Desktop (Windows)
+  # Dan default nya adalah hostpath
   storageClassName: hostpath
   volumeMode: Filesystem
   persistentVolumeReclaimPolicy: Retain
+  # Harus menambahkan type hostpath ini dan disimpan ke /tmp
   hostPath:
     path: "/tmp"
 ---
+# PVC untuk mongodb data
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
   name: mongo-pvc
 spec:
   resources:
+    # Hanya meminta 500MB
     requests:
       storage: 500Mi
   accessModes:

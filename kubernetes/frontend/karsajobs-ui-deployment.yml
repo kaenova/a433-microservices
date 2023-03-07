@@ -22,8 +22,10 @@ spec:
       # Deploy karsajobs-ui container
       - name: karsajobs-ui
         image: ghcr.io/kaenova/karsajobs-ui:latest
+        # Buka port 8000
         ports:
         - containerPort: 8000
+        # Karena menggunakan ingress, dan backendnya ke /api jadi harus ku ubah seperti ini.
         env:
           - name: VUE_APP_BACKEND
             value: /api

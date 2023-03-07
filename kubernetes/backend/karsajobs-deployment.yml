@@ -27,13 +27,16 @@ spec:
         env:
           - name: APP_PORT
             value: "8080"
+          # Connect ke mongodb melalui mongo-service
           - name: MONGO_HOST
             value: mongo-service
+          # User from secret
           - name: MONGO_USER
             valueFrom:
               secretKeyRef:
                 name: mongo-secret
                 key: MONGO_ROOT_USERNAME
+          # Password from secret
           - name: MONGO_PASS
             valueFrom:
               secretKeyRef:

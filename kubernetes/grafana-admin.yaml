@@ -1,3 +1,5 @@
+# Untuk login grafana, aku harus dapetin username dan password dari secret yang di helm
+# Harus di export dan didecode menggunakan base64 untuk mendapatkan hal tsb.
 apiVersion: v1
 data:
   admin-password: cHJvbS1vcGVyYXRvcg==

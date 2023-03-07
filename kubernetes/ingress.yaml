@@ -5,6 +5,7 @@ metadata:
   labels:
     name: karsajobs-ingress
   annotations:
+    # For routing path override, ini karena di backendnya menggunakan rootpath /
     nginx.ingress.kubernetes.io/rewrite-target: /$1
     nginx.ingress.kubernetes.io/use-regex: "true"
 spec:
@@ -13,6 +14,7 @@ spec:
   - host: localhost
     http:
       paths:
+      # UI dapat diakses melalui http://localhost/
       - pathType: Prefix
         path: "/(.*)"
         backend:
@@ -20,6 +22,8 @@ spec:
             name: karsajobs-ui-service
             port: 
               number: 8000
+      # UI dapat diakses melalui http://localhost/api/
+      # yang nanti akan diubah oleh ingress dan diteruskan ke service dengan path /
       - pathType: Prefix
         path: "/api/(.*)"
         backend:

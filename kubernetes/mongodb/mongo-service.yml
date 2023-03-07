@@ -5,6 +5,7 @@ metadata:
 spec:
   selector:
     app: mongo
+  # Default port of mongodb + karena backend hardcoded ke 27017
   ports:
   - port: 27017
     targetPort: 27017
