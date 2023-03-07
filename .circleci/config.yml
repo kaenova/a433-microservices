@@ -30,6 +30,7 @@ jobs:
       - run:
           name: Run tests
           command: |
+            set CGO_ENABLED=0 # Setting go withoug gcc
             go test -v -short --count=1 $(go list ./...)
 
   build-app-karsajobs:
