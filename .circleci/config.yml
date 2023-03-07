@@ -52,7 +52,7 @@ jobs:
           command: docker build -t ghcr.io/${DOCKER_REGISTRY}:latest -f Dockerfile .
       - run:
           name: Push Docker Image
-          command: docker push -t ghcr.io/${DOCKER_REGISTRY}:latest
+          command: docker push ghcr.io/${DOCKER_REGISTRY}:latest
 
 
 # Invoke jobs via workflows
